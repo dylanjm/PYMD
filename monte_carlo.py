@@ -4,14 +4,13 @@ import sys
 import matplotlib.pyplot as plt
 from scipy.stats import norm, kurtosis
 from pandas_datareader import data
+from tabulate import tabulate
 
-print("DJM Monte Carlo Simulation")
+print("PYMD Monte Carlo Simulation")
 stock = input('Please enter a ticker to evaluate: ')
 date = input('Please enter a start date (e.g. 1/13/2000): ')
-try:
-    sec = data.DataReader(stock,'yahoo',start=date)
-except IOError:
-    print('There was an error')
+sec = data.DataReader(stock,'yahoo',start=date)
+
 
 # compound annual growth (CAGR) which will give us \mu
 days = (sec.index[-1] - sec.index[0]).days
@@ -31,7 +30,7 @@ T = 252
 
 # daily returns using random normal dist.
 
-for i in range(10000):
+for i in range(50000):
     daily_returns = np.random.normal(mu/T,vol/math.sqrt(T),T)+1
     price_list = [S]
 
@@ -42,14 +41,24 @@ for i in range(10000):
     result.append(price_list[-1])
 
 print('')
-print("Number of Iterations: 10000")
-print("Mean:",round(np.mean(result),2))
-print("Std. Dev:",round(np.std(result),2))
-print("Median:", round(np.median(result),2))
-print("Skewness:",round((3*(np.mean(result)-np.median(result)))/(np.std(result)),2))
-print("Kurtosis:",round(kurtosis(result),2))
-print("5% CI:", round(np.percentile(result,5),2))
-print("95% CI:",round(np.percentile(result,95),2))
+print("Number of Iterations: 50000")
+
+mean = np.mean(result)
+stdev = np.std(result)
+median = np.median(result)
+skew = (3*(np.mean(result)-np.median(result)))/(np.std(result))
+kurt = kurtosis(result)
+ci_5 = np.percentile(result,5)
+ci_95 = np.percentile(result,95)
+
+print(tabulate([["Mean",'%.2f' % mean],
+               ["Median",'%.2f' % median],
+               ["StDev",'%.2f' % stdev],
+               ["Skewness",'%.2f' % skew],
+               ["Kurtosis",'%.2f' % kurt],
+               ["5% CI",'%.2f' % ci_5],
+               ["95% CI",'%.2f' % ci_95]],
+      headers=['Model','Statistics'],tablefmt='orgtbl'))
 
 # Line Chart
 plt.xlim((0,252))
@@ -68,6 +77,4 @@ plt.grid(True)
 plt.axvline(np.percentile(result,5), color='r', linestyle='dashed', linewidth=2)
 plt.axvline(np.percentile(result,95), color='r', linestyle='dashed', linewidth=2)
 plt.show()
-
-
 
