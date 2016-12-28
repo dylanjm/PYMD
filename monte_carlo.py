@@ -30,7 +30,7 @@ T = 252
 
 # daily returns using random normal dist.
 
-for i in range(50000):
+for i in range(10000):
     daily_returns = np.random.normal(mu/T,vol/math.sqrt(T),T)+1
     price_list = [S]
 
@@ -41,7 +41,7 @@ for i in range(50000):
     result.append(price_list[-1])
 
 print('')
-print("Number of Iterations: 50000")
+print("Number of Iterations: 10000")
 
 mean = np.mean(result)
 stdev = np.std(result)
