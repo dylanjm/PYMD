@@ -10,6 +10,7 @@ print("PYMD Monte Carlo Simulation")
 stock = input('Please enter a ticker to evaluate: ')
 date = input('Please enter a start date (e.g. 1/13/2000): ')
 sec = data.DataReader(stock,'yahoo',start=date)
+print('')
 
 
 # compound annual growth (CAGR) which will give us \mu
@@ -47,7 +48,7 @@ mean = np.mean(result)
 stdev = np.std(result)
 median = np.median(result)
 skew = (3*(np.mean(result)-np.median(result)))/(np.std(result))
-kurt = kurtosis(result)
+kurt = kurtosis(result,0,False,True)
 ci_5 = np.percentile(result,5)
 ci_95 = np.percentile(result,95)
 
