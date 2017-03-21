@@ -1,4 +1,4 @@
-*.html
+OutputAnalysis.html
 *.pdf
 .DS_Store
 __pycache__

@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>Efficient Frontier</title>
+</head>
+<body style="background-color:#faf6eb;">
+<h1 align="center">PYMD Automated Investment Analysis Report</h1>
+<h2 align="center">{{ stocks }}</h2>
+<p align="center">{{ headingdate }}</p>
+<h3 align="center">Table 1: Analysis of Securities</h2>
+<div align="center">{{ table_1 }}</div>
+
+<h3 align="center">Table 2: Portfolio Indicators</h2>
+<div align="center">{{ table_2 }}</div>
+
+<h3 align="center">Table 3: Equally Weighted Portfolio</h2>
+<div align="center">{{ table_3 }}</div>
+<br>
+<div align="center">
+<img src="data:image/png;base64,{{ plot }}" style="width:600px;height:500px" alt="Download Html File to See Frontier Plot">
+</div>
+<h3 align="center">Table 4: Maximum Sharpe Portfolio</h2>
+<div align="center">{{ table_4 }}</div>
+
+<h3 align="center">Table 5: Minimum Variance Portfolio</h2>
+<div align="center">{{ table_5 }}</div>
+
+</body>
+</html>
