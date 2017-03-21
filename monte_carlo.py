@@ -12,7 +12,6 @@ date = input('Please enter a start date (e.g. 1/13/2000): ')
 sec = data.DataReader(stock,'yahoo',start=date)
 print('')
 
-
 # compound annual growth (CAGR) which will give us \mu
 days = (sec.index[-1] - sec.index[0]).days
 cagr = ((((sec['Adj Close'][-1])/sec['Adj Close'][1])) ** (365.0/days)) - 1
@@ -42,6 +41,7 @@ for i in range(10000):
     result.append(price_list[-1])
 
 print('')
+print("Current Price: $" + str(round(sec['Adj Close'][-1],2)))
 print("Number of Iterations: 10000")
 
 mean = np.mean(result)
