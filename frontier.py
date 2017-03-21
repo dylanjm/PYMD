@@ -107,7 +107,6 @@ class OptimalFrontier:
 		#compute a few more portfolio stats
 		self.at_risk = norm.ppf(0.05,loc=self.ann_ret,scale=self.ann_std)
 		self.sec_sharpe = (self.ann_ret-self.trate[-1])/self.ann_std
-
 		#compute sortino ratio
 		target = .03/252
 		rt = self.mu_ret-target
@@ -195,7 +194,6 @@ class OptimalFrontier:
 		'Monte Carlo Portfolio Optimization' + bcolors.FAIL + '**' + bcolors.ENDC)
 		num_iterations = int(input('Enter Number of Simulations: '))
 		self.results = np.zeros((4+len(self.stocks)-1,num_iterations))
-
 		for i in range(num_iterations):
 			weights = np.array(np.random.random(len(self.stocks)))
 			weights /= np.sum(weights)
@@ -317,7 +315,7 @@ class OptimalFrontier:
 			 
 			server = smtplib.SMTP('smtp.gmail.com', 587)
 			server.starttls()
-			server.login(fromaddr, "Pymdshizzam1234")
+			server.login(fromaddr, "Pymdinvestments1234")
 			text = msg.as_string()
 			server.sendmail(fromaddr, toaddr, text)
 			server.quit()
@@ -342,7 +340,6 @@ def main():
     pt.buildPortfolioTables()
     pt.displayPortfolioTables()
     pt.generateHTML()
-    pt.generatePDF()
     pt.generateEmail()
 
 if __name__ == "__main__":
