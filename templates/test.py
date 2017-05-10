@@ -5,5 +5,5 @@ server.starttls()
 server.login("pymd.investments@gmail.com", "Pymdshizzam1234")
  
 msg = "YOUR MESSAGE!"
-server.sendmail("pymd.investments@gmail.com", "dylan.mcdowell226@gmail.com", msg)
+server.sendmail("pymd.investments@gmail.com", "", msg)
 server.quit()
